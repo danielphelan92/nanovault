@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danielphelan92.github.io/nanovault/sitemap.xml
