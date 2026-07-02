@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "nanovault-site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["website/static/server.js"],
+      "port": 8099
+    }
+  ]
+}

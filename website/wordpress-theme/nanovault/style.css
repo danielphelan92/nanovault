@@ -1,0 +1,18 @@
+/*
+Theme Name: NanoVault
+Theme URI: https://github.com/YOURNAME/nanovault
+Author: NanoVault
+Author URI: https://github.com/YOURNAME
+Description: A clean, animated one-page landing theme for NanoVault — the free iPod music backup app for Windows. Configure the download link, Buy Me a Coffee link and GitHub link under Appearance → Customize → NanoVault.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+License: MIT
+License URI: https://opensource.org/licenses/MIT
+Text Domain: nanovault
+Tags: one-page, landing, custom-colors, custom-menu, footer-widgets
+*/
+
+/* The actual styling lives in assets/css/main.css (enqueued by functions.php).
+   This file only carries the WordPress theme header above. */

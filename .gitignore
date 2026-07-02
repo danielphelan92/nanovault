@@ -19,3 +19,6 @@ TestResults/
 # OS
 .DS_Store
 Thumbs.db
+
+# Website preview server artifacts
+website/wordpress-theme/*.zip
