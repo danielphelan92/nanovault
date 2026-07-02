@@ -18,10 +18,16 @@ cp -R "$SRC/." "$TMP/"
 rm -f "$TMP/server.js"
 touch "$TMP/.nojekyll"   # tell Pages not to run Jekyll
 
+# Use the GitHub private no-reply identity so the deploy never exposes a
+# personal email in the gh-pages commit history.
+GIT_NAME="danielphelan92"
+GIT_EMAIL="215643562+danielphelan92@users.noreply.github.com"
+
 cd "$TMP"
 git init -q -b gh-pages
 git add -A
-git commit -q -m "Deploy NanoVault site $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+git -c user.name="$GIT_NAME" -c user.email="$GIT_EMAIL" \
+  commit -q -m "Deploy NanoVault site $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 git remote add origin "$REPO_URL"
 git push -f origin gh-pages
 
