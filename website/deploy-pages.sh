@@ -12,9 +12,10 @@ SRC="$(cd "$(dirname "$0")/static" && pwd)"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
-# Copy only the deployable site (skip the local preview server.js).
-cp "$SRC/index.html" "$TMP/"
-cp -R "$SRC/css" "$SRC/js" "$SRC/img" "$TMP/"
+# Copy the whole static site (index.html, css, js, img, sitemap.xml,
+# robots.txt, …) except the local preview server.
+cp -R "$SRC/." "$TMP/"
+rm -f "$TMP/server.js"
 touch "$TMP/.nojekyll"   # tell Pages not to run Jekyll
 
 cd "$TMP"

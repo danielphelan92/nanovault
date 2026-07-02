@@ -54,3 +54,11 @@ Then paste the direct file URL into the Customizer **Download URL** field.
   Both are shared verbatim with the standalone static site in `../static`.
 - Respects `prefers-reduced-motion` and `prefers-color-scheme`.
 - MIT licensed, same as the app.
+
+## SEO (WordPress)
+
+The theme sets a proper `<title>` and clean markup, but for full SEO on
+WordPress the easiest route is a free plugin — **Yoast SEO** or **Rank Math** —
+which handles meta descriptions, Open Graph, sitemaps and schema for you. If you
+instead use the free static site (`website/static`), all of that is already
+built in — see [`docs/SEO.md`](../../../docs/SEO.md).

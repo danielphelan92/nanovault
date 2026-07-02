@@ -3,16 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NanoVault — Free iPod music backup for Windows</title>
-  <meta name="description" content="Back up the music on your iPod nano to a normal, organised folder on your PC. Free, offline, and it never changes your iPod. No paywall, no 'unlock the rest of your songs' nonsense.">
+  <title>NanoVault — Free iPod Music Backup for PC (No iTunes)</title>
+  <meta name="description" content="Copy all the music off your iPod nano to your Windows PC for free — real track names, artwork and playlists, no iTunes and no paywall. NanoVault opens your iPod read-only, so nothing on it ever changes.">
+  <link rel="canonical" href="https://danielphelan92.github.io/nanovault/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#6f5bd6">
 
   <!-- Open Graph / social preview -->
-  <meta property="og:title" content="NanoVault — Free iPod music backup for Windows">
-  <meta property="og:description" content="Rescue the music off your old iPod. Free forever, no paywall, never touches your iPod.">
+  <meta property="og:site_name" content="NanoVault">
+  <meta property="og:title" content="NanoVault — Free iPod Music Backup for PC">
+  <meta property="og:description" content="Rescue the music off your old iPod nano to your PC. Free, no paywall, no iTunes — and it never changes your iPod.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="img/app-preview.png">
+  <meta property="og:url" content="https://danielphelan92.github.io/nanovault/">
+  <meta property="og:image" content="https://danielphelan92.github.io/nanovault/img/app-preview.png">
+  <meta property="og:image:width" content="1960">
+  <meta property="og:image:height" content="1400">
+  <meta property="og:image:alt" content="The NanoVault app detecting an iPod, ready to back up its music">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NanoVault — Free iPod Music Backup for PC">
+  <meta name="twitter:description" content="Copy all the music off your iPod to your PC, free. No paywall, no iTunes, never changes your iPod.">
+  <meta name="twitter:image" content="https://danielphelan92.github.io/nanovault/img/app-preview.png">
+
+  <!-- Google Search Console: create a property for this exact URL, pick the
+       "HTML tag" method, and paste the content value into the meta below,
+       then redeploy. (Currently commented out until you have the code.)
+  <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE">
+  -->
 
   <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;850&display=swap" rel="stylesheet">
@@ -24,6 +45,47 @@
     source → GitHub repo. Nothing left to fill in.
     ============================================================
   -->
+
+  <!-- Structured data: helps Google understand this is a free Windows app
+       and can surface the FAQ + app details as rich results. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "NanoVault",
+    "operatingSystem": "Windows 10, Windows 11",
+    "applicationCategory": "MultimediaApplication",
+    "description": "Free Windows app that copies the music off an iPod nano to your PC with real track names, artwork and playlists. Read-only, no iTunes, no paywall.",
+    "url": "https://danielphelan92.github.io/nanovault/",
+    "downloadUrl": "https://github.com/danielphelan92/nanovault/releases/latest",
+    "softwareVersion": "1.0.0",
+    "image": "https://danielphelan92.github.io/nanovault/img/app-preview.png",
+    "license": "https://opensource.org/licenses/MIT",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "NanoVault" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is it really free? What's the catch?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — every feature, no trial, no track limit, no pro tier. It's open source under the MIT licence. If you want to support it there's a coffee button; that's the only ask." } },
+      { "@type": "Question", "name": "Will it change or wipe my iPod?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. NanoVault opens your iPod strictly read-only — it's designed so it literally can't write to the device. It only ever copies music off it." } },
+      { "@type": "Question", "name": "Do I need iTunes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. As long as Windows shows your iPod as a drive, NanoVault works on its own. On some older models you may need to switch on Enable disk use once — the app walks you through it." } },
+      { "@type": "Question", "name": "How do I get music off my iPod onto my computer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Plug the iPod into your Windows PC, open NanoVault, choose a folder and click Back Up Music. It finds the songs, restores their names and copies them into a tidy folder — no iTunes and no technical steps." } },
+      { "@type": "Question", "name": "What about protected (purchased) songs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They're copied exactly as they are and clearly labelled. NanoVault never removes DRM — playing protected files still needs the Apple account they were bought with." } },
+      { "@type": "Question", "name": "Which iPods are supported?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Classic disk-mode iPods — nano 1st to 5th gen (4th gen is the main target), iPod classic, video, photo and mini. iPod touch/iPhone and the nano 6th/7th gen don't mount as drives, so they aren't supported." } }
+    ]
+  }
+  </script>
 </head>
 <body>
 
