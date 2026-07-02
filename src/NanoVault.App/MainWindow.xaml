@@ -1,0 +1,47 @@
+<Window x:Class="NanoVault.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:NanoVault.App.Views"
+        Title="NanoVault"
+        Icon="Assets/NanoVault.ico"
+        MinWidth="900" MinHeight="620"
+        Width="980" Height="700"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource Brush.WindowBackground}"
+        TextOptions.TextFormattingMode="Ideal"
+        UseLayoutRounding="True">
+
+    <Window.Resources>
+        <DataTemplate x:Key="HomeTemplate"><views:HomeView /></DataTemplate>
+        <DataTemplate x:Key="TracksTemplate"><views:TracksView /></DataTemplate>
+        <DataTemplate x:Key="ProgressTemplate"><views:ProgressView /></DataTemplate>
+        <DataTemplate x:Key="CompletionTemplate"><views:CompletionView /></DataTemplate>
+        <DataTemplate x:Key="SettingsTemplate"><views:SettingsView /></DataTemplate>
+        <DataTemplate x:Key="TroubleshootingTemplate"><views:TroubleshootingView /></DataTemplate>
+    </Window.Resources>
+
+    <ContentControl Content="{Binding}" Focusable="False">
+        <ContentControl.Style>
+            <Style TargetType="ContentControl">
+                <Setter Property="ContentTemplate" Value="{StaticResource HomeTemplate}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CurrentScreen}" Value="Tracks">
+                        <Setter Property="ContentTemplate" Value="{StaticResource TracksTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding CurrentScreen}" Value="Progress">
+                        <Setter Property="ContentTemplate" Value="{StaticResource ProgressTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding CurrentScreen}" Value="Completion">
+                        <Setter Property="ContentTemplate" Value="{StaticResource CompletionTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding CurrentScreen}" Value="Settings">
+                        <Setter Property="ContentTemplate" Value="{StaticResource SettingsTemplate}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding CurrentScreen}" Value="Troubleshooting">
+                        <Setter Property="ContentTemplate" Value="{StaticResource TroubleshootingTemplate}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ContentControl.Style>
+    </ContentControl>
+</Window>

@@ -1,0 +1,52 @@
+<UserControl x:Class="NanoVault.App.Views.TroubleshootingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False">
+        <Grid Margin="36,28" MaxWidth="720">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,18">
+                <Button DockPanel.Dock="Right" Style="{StaticResource GhostButton}" Content="Back"
+                        Command="{Binding GoHomeCommand}" AutomationProperties.Name="Back to home" />
+                <TextBlock Style="{StaticResource PageTitle}" Text="Help NanoVault see your iPod" />
+            </DockPanel>
+
+            <Border Grid.Row="1" Style="{StaticResource Card}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource BodyText}" Margin="0,0,0,12"
+                               Text="Your iPod needs to appear in Windows as a drive before its music can be read. These steps fix that in almost every case — none of them change anything on the iPod." />
+
+                    <ItemsControl>
+                        <ItemsControl.Items>
+                            <TextBlock Style="{StaticResource BodyText}" Margin="0,5,0,0"
+                                       Text="1.  Unlock or wake the iPod if its screen is off or the Hold switch is on." />
+                            <TextBlock Style="{StaticResource BodyText}" Margin="0,5,0,0"
+                                       Text="2.  Try a known-good Apple-compatible USB cable — charging-only cables cannot transfer music." />
+                            <TextBlock Style="{StaticResource BodyText}" Margin="0,5,0,0"
+                                       Text="3.  Plug it into a USB port directly on your PC, not through a hub." />
+                            <TextBlock Style="{StaticResource BodyText}" Margin="0,5,0,0"
+                                       Text="4.  Close iTunes or Apple Devices — either one may be holding the iPod open." />
+                            <TextBlock Style="{StaticResource BodyText}" Margin="0,5,0,0"
+                                       Text="5.  If your iPod supports it, turn on “Enable disk use” in iTunes or Apple Devices. This lets Windows show it as a drive." />
+                            <TextBlock Style="{StaticResource BodyText}" Margin="0,5,0,0"
+                                       Text="6.  Unplug the iPod, reconnect it, and click Scan Again below." />
+                        </ItemsControl.Items>
+                    </ItemsControl>
+
+                    <TextBlock Style="{StaticResource SecondaryText}" Margin="0,14,0,0"
+                               Text="Never restore or erase the iPod to fix connection problems — that would delete your music. NanoVault will never ask you to do that." />
+                </StackPanel>
+            </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button Style="{StaticResource PrimaryButton}" Content="Scan Again"
+                        Command="{Binding RefreshDevicesCommand}" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

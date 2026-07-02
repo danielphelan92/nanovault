@@ -1,0 +1,136 @@
+<UserControl x:Class="NanoVault.App.Views.CompletionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:NanoVault.App.Converters">
+
+    <UserControl.Resources>
+        <conv:NotNullVisibilityConverter x:Key="NotNullVisible" />
+        <conv:EqualsVisibilityConverter x:Key="EqualsVisible" />
+        <conv:ByteSizeConverter x:Key="ByteSize" />
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False">
+        <Grid Margin="36,28" MaxWidth="760">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Fatal error presentation -->
+            <Border Grid.Row="0" Style="{StaticResource Card}" Margin="0,0,0,14"
+                    Visibility="{Binding FatalErrorMessage, Converter={StaticResource NotNullVisible}}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" FontSize="18"
+                                   Foreground="{DynamicResource Brush.Error}" VerticalAlignment="Center" />
+                        <TextBlock Style="{StaticResource PageTitle}" FontSize="20" Margin="10,0,0,0"
+                                   Text="The backup could not be completed" />
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource BodyText}" Margin="0,10,0,0"
+                               Text="{Binding FatalErrorMessage}" />
+                    <Expander Header="Copy technical details" Margin="0,10,0,0"
+                              Foreground="{DynamicResource Brush.TextSecondary}">
+                        <TextBox Text="{Binding FatalErrorDetail, Mode=OneWay}"
+                                 IsReadOnly="True" TextWrapping="Wrap" MaxHeight="180"
+                                 VerticalScrollBarVisibility="Auto"
+                                 FontFamily="Consolas" FontSize="11" />
+                    </Expander>
+                    <Button Style="{StaticResource PrimaryButton}" Content="Try Again" Margin="0,16,0,0"
+                            HorizontalAlignment="Left"
+                            Command="{Binding BackUpAnotherCommand}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Normal completion -->
+            <StackPanel Grid.Row="1"
+                        Visibility="{Binding LastResult, Converter={StaticResource NotNullVisible}}">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                    <Border Width="46" Height="46" CornerRadius="23"
+                            Background="{DynamicResource Brush.SuccessSubtle}">
+                        <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="20"
+                                   Foreground="{DynamicResource Brush.Success}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
+                        <TextBlock FontSize="22">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource PageTitle}">
+                                    <Setter Property="Text" Value="Backup complete" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding LastResult.WasCancelled}" Value="True">
+                                            <Setter Property="Text" Value="Backup cancelled" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding LastResult.WasInterrupted}" Value="True">
+                                            <Setter Property="Text" Value="Backup interrupted" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource SecondaryText}"
+                                   Text="Your iPod has not been changed." />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock FontSize="24" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource Brush.Success}"
+                                       Text="{Binding LastResult.CopiedCount}" />
+                            <TextBlock Style="{StaticResource SecondaryText}" Text="tracks copied" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock FontSize="24" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource Brush.TextPrimary}"
+                                       Text="{Binding LastResult.SkippedDuplicateCount}" />
+                            <TextBlock Style="{StaticResource SecondaryText}" Text="duplicates skipped" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock FontSize="24" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource Brush.Warning}"
+                                       Text="{Binding LastResult.WarningCount}" />
+                            <TextBlock Style="{StaticResource SecondaryText}" Text="warnings" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <TextBlock FontSize="24" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource Brush.Error}"
+                                       Text="{Binding LastResult.FailedCount}" />
+                            <TextBlock Style="{StaticResource SecondaryText}" Text="failed" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="4">
+                            <TextBlock FontSize="24" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource Brush.TextPrimary}"
+                                       Text="{Binding LastResult.TotalCopiedBytes, Converter={StaticResource ByteSize}}" />
+                            <TextBlock Style="{StaticResource SecondaryText}" Text="copied" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14"
+                        Visibility="{Binding LastResult.WasInterrupted, Converter={StaticResource EqualsVisible}, ConverterParameter=True}">
+                    <TextBlock Style="{StaticResource BodyText}"
+                               Text="The iPod was disconnected before everything finished. Reconnect it and choose Back Up Again — tracks that already copied are detected and skipped, so it continues where it left off." />
+                </Border>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource PrimaryButton}" Content="Open Backup Folder"
+                            Command="{Binding OpenBackupFolderCommand}" />
+                    <Button Style="{StaticResource SecondaryButton}" Content="View Report" Margin="10,0,0,0"
+                            Command="{Binding ViewReportCommand}" />
+                    <Button Style="{StaticResource SecondaryButton}" Content="Back Up Another iPod" Margin="10,0,0,0"
+                            Command="{Binding BackUpAnotherCommand}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

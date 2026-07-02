@@ -1,0 +1,103 @@
+<UserControl x:Class="NanoVault.App.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:conv="clr-namespace:NanoVault.App.Converters"
+             xmlns:models="clr-namespace:NanoVault.Core.Models;assembly=NanoVault.Core">
+
+    <UserControl.Resources>
+        <conv:EnumDisplayConverter x:Key="EnumDisplay" />
+        <ObjectDataProvider x:Key="TemplateValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:OrganizationTemplate" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="DuplicateValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:DuplicateBehavior" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="ThemeValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:AppTheme" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <DataTemplate x:Key="EnumItem">
+            <TextBlock Text="{Binding Converter={StaticResource EnumDisplay}}" />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False">
+        <Grid Margin="36,28" MaxWidth="720">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,18">
+                <Button DockPanel.Dock="Right" Style="{StaticResource PrimaryButton}" Content="Save"
+                        Command="{Binding Settings.SaveCommand}" AutomationProperties.Name="Save settings" />
+                <Button DockPanel.Dock="Right" Style="{StaticResource GhostButton}" Content="Back" Margin="0,0,10,0"
+                        Command="{Binding GoHomeCommand}" AutomationProperties.Name="Back to home" />
+                <TextBlock Style="{StaticResource PageTitle}" Text="Settings" />
+            </DockPanel>
+
+            <Border Grid.Row="1" Style="{StaticResource Card}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="Organise backed-up music as" />
+                    <ComboBox Margin="0,8,0,14"
+                              ItemsSource="{Binding Source={StaticResource TemplateValues}}"
+                              SelectedItem="{Binding Settings.Template}"
+                              ItemTemplate="{StaticResource EnumItem}"
+                              AutomationProperties.Name="Folder organisation" />
+
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="If a file already exists in the backup folder" />
+                    <ComboBox Margin="0,8,0,4"
+                              ItemsSource="{Binding Source={StaticResource DuplicateValues}}"
+                              SelectedItem="{Binding Settings.DuplicateBehavior}"
+                              ItemTemplate="{StaticResource EnumItem}"
+                              AutomationProperties.Name="Duplicate handling" />
+                    <TextBlock Style="{StaticResource SecondaryText}"
+                               Text="Files are never overwritten silently, whichever option you choose." />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2" Style="{StaticResource Card}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="Safety and extras" Margin="0,0,0,4" />
+                    <CheckBox Content="Verify copied files with SHA-256 (recommended)"
+                              IsChecked="{Binding Settings.VerifyCopies}" />
+                    <CheckBox Content="Keep the original file dates on copied tracks"
+                              IsChecked="{Binding Settings.PreserveTimestamps}" />
+                    <CheckBox Content="Include protected files in the backup (copied as-is, never decrypted)"
+                              IsChecked="{Binding Settings.IncludeProtectedFiles}" />
+                    <CheckBox Content="Create an “All iPod Music” playlist of everything backed up"
+                              IsChecked="{Binding Settings.CreateMasterPlaylist}" />
+                    <CheckBox Content="Recreate playlists found on the iPod"
+                              IsChecked="{Binding Settings.CreateIpodPlaylists}" />
+                    <CheckBox Content="Remember the last backup folder"
+                              IsChecked="{Binding Settings.RememberLastDestination}" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="3" Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="Appearance" />
+                    <ComboBox Margin="0,8,0,14" Width="220" HorizontalAlignment="Left"
+                              ItemsSource="{Binding Source={StaticResource ThemeValues}}"
+                              SelectedItem="{Binding Settings.Theme}"
+                              ItemTemplate="{StaticResource EnumItem}"
+                              AutomationProperties.Name="Theme" />
+
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="Privacy" />
+                    <CheckBox Content="Anonymous diagnostics"
+                              IsChecked="{Binding Settings.AnonymousDiagnostics}" />
+                    <TextBlock Style="{StaticResource SecondaryText}" Margin="24,2,0,0"
+                               Text="Off by default. This version of NanoVault sends nothing over the internet either way — everything stays on this PC." />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

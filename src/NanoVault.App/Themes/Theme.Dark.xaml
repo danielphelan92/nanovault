@@ -1,0 +1,28 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="Color.Accent">#9B8AF0</Color>
+
+    <SolidColorBrush x:Key="Brush.WindowBackground" Color="#17161D" />
+    <SolidColorBrush x:Key="Brush.CardBackground" Color="#232130" />
+    <SolidColorBrush x:Key="Brush.CardBorder" Color="#38344A" />
+    <SolidColorBrush x:Key="Brush.TextPrimary" Color="#ECEAF4" />
+    <SolidColorBrush x:Key="Brush.TextSecondary" Color="#A5A1B8" />
+    <SolidColorBrush x:Key="Brush.Accent" Color="#9B8AF0" />
+    <SolidColorBrush x:Key="Brush.AccentHover" Color="#AC9DF4" />
+    <SolidColorBrush x:Key="Brush.AccentPressed" Color="#8D7BE8" />
+    <SolidColorBrush x:Key="Brush.AccentSubtle" Color="#2E2A44" />
+    <SolidColorBrush x:Key="Brush.AccentForeground" Color="#17161D" />
+    <SolidColorBrush x:Key="Brush.Success" Color="#7BD89A" />
+    <SolidColorBrush x:Key="Brush.SuccessSubtle" Color="#1F3327" />
+    <SolidColorBrush x:Key="Brush.Warning" Color="#E7C86D" />
+    <SolidColorBrush x:Key="Brush.WarningSubtle" Color="#332D1B" />
+    <SolidColorBrush x:Key="Brush.Error" Color="#F09A96" />
+    <SolidColorBrush x:Key="Brush.ErrorSubtle" Color="#3A2323" />
+    <SolidColorBrush x:Key="Brush.InputBackground" Color="#1D1B27" />
+    <SolidColorBrush x:Key="Brush.InputBorder" Color="#45415C" />
+    <SolidColorBrush x:Key="Brush.ProgressTrack" Color="#312E42" />
+    <SolidColorBrush x:Key="Brush.RowHover" Color="#2B2839" />
+    <SolidColorBrush x:Key="Brush.FocusVisual" Color="#ECEAF4" />
+
+</ResourceDictionary>
