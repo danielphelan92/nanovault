@@ -212,7 +212,7 @@ p { margin: 0; }
   0%, 100% { transform: translateY(0) rotate(-.4deg); }
   50% { transform: translateY(-14px) rotate(.4deg); }
 }
-.device img { width: 100%; }
+.device img { width: 100%; height: auto; display: block; aspect-ratio: 980 / 700; object-fit: cover; }
 .hero__chip {
   position: absolute; padding: 11px 15px; border-radius: 13px; background: var(--card);
   box-shadow: var(--shadow-md); border: 1px solid var(--border); font-size: 13.5px; font-weight: 600;
