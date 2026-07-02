@@ -1,5 +1,9 @@
 # NanoVault website
 
+**Live for free at https://danielphelan92.github.io/nanovault/** (GitHub Pages,
+served from the `gh-pages` branch). Download and donate links are already wired
+up — no hosting bill.
+
 The marketing/download site for NanoVault, in two interchangeable forms that
 share the exact same design, CSS and JavaScript:
 
@@ -43,6 +47,18 @@ a **Buy Me a Coffee** donation block, an FAQ, and an optional ad slot.
   the `.ad-slot` block in `static/index.html`). It sits below the content and
   never in the download path. Google AdSense requires its own approval; no
   publisher ID is bundled.
+
+## Updating the live GitHub Pages site
+
+The site is served from the `gh-pages` branch. After editing anything in
+`website/static/`, run:
+
+```bash
+./website/deploy-pages.sh
+```
+
+That copies the static files to `gh-pages` and pushes; the live site refreshes
+in about a minute. (Requires `git` and push access to the repo.)
 
 ## Preview the static site locally
 

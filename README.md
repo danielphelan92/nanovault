@@ -4,6 +4,8 @@
 
 NanoVault detects a connected iPod, finds the music Apple hides inside `iPod_Control`, recovers real track names from embedded tags and the iPod's own database, and copies everything into a clean `Artist\Album\01 - Track Title.mp3` layout with SHA-256 verification, a backup report, and playlists. No iTunes required, no hidden-folder tricks, no command line.
 
+**[⤓ Download for Windows](https://github.com/danielphelan92/nanovault/releases/latest)** · **[Website](https://danielphelan92.github.io/nanovault/)** · Free, MIT-licensed. If it saves your library, [buy me a coffee](https://paypal.me/NanoVault) ☕ (entirely optional).
+
 ![NanoVault home screen](docs/home-screen-preview.png)
 
 *Design preview rendered from the app's actual theme; replace with a captured screenshot after the first Windows run.*
