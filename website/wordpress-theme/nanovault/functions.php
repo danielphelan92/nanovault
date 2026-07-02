@@ -18,7 +18,7 @@ define( 'NANOVAULT_VERSION', '1.0.0' );
 function nanovault_defaults() {
 	return array(
 		'download_url' => 'https://github.com/danielphelan92/nanovault/releases/download/v1.0.0/NanoVault-Setup-1.0.0.exe',
-		'coffee_url'   => '#', // Set your Buy Me a Coffee / Ko-fi / PayPal link in Customizer.
+		'coffee_url'   => 'https://paypal.me/NanoVault',
 		'github_url'   => 'https://github.com/danielphelan92/nanovault',
 		'app_version'  => '1.0.0',
 		'adsense_code' => '',
